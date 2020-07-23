@@ -1,0 +1,6 @@
+1、新建的点击后没有颜色变化
+2、devx安装不成功，最后删除了 node_modules 才行
+3、devx安装后没有store.js文件
+4、直接 npm run dev 失败
+5、antdesign 中如果引入 devx后，还需要在 main.js 中添加引入 vuex
+6、上级目录要用 ../

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- v-model 绑定，做表单数据绑定 -->
+        <input type="text" v-model="name" name="" id="">
+        <input type="button" value="新增" v-on:click="add()">
+        <ul>
+            <li v-for="n in nameList">
+                {{n}}
+            </li>
+        </ul>
+        <input type="checkbox" name="isActiveTest" v-model="isActive">
+        
+        <!-- :class同 v-bind:class -->
+        <p :class="{active:isActive}">
+            测试样式
+        </p>
+        <!-- <p style="color: red; font-size: 30px;"> -->
+        <p :style="{color: fcolor,fontSize:fsize+'px'}">
+            测试
+       </p>
+       <!-- 加 lazy之后，光标移开点击其他事件则才会改变内容 -->
+       <input type="text" name="ttest" v-model.lazy="test">
+        {{test}}
+       <br>
+       <input type="text" name="test2" v-model="testone">
+       {{reverseTest}}
+    </div>
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            data:{ 
+                name:"",
+                nameList:[],
+                isActive:true,
+            
+                fcolor:"blue",
+                fsize:30,
+
+                test:"",
+                testone:"",
+            },
+            methods:{
+                add:function(){
+                    // this.nameList.push(this.name)
+                    //或者
+                    vm.nameList.push(vm.name)
+                    vm.name=""
+                }
+            },
+            computed:{
+                reverseTest:function(){
+                    // 此处只能用 this，不能用 vm
+                    return this.testone.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+    <style>
+        .active{
+             background-color: bisque;
+        }
+    </style>
+</body>
+</html>
